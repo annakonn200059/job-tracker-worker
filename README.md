@@ -59,15 +59,17 @@ Both stages must use the **same Python version** — the venv references its
 interpreter by path.
  
 ## Development
- 
+
+Ruff and pytest are dev dependencies, pinned in `uv.lock`, so local runs and CI
+use the same versions. `uv sync` installs them; the Docker image doesn't
+(`--no-dev`).
+
 ```bash
-make lint
-make test
+make lint   # ruff check + ruff format --check — same as CI
+make fix    # auto-fix lint issues and reformat
+make test   # pytest
 ```
- 
 
+Without make: `uv run ruff check .`, `uv run ruff format .`, `uv run pytest`.
 
-
-
-
-
+CI (`.github/workflows/ci.yml`) runs lint, format check and tests.

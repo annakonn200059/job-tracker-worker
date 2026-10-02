@@ -8,13 +8,18 @@ TAG   := $(SHA)$(DIRTY)
 # Inside a container, localhost is the container itself.
 DOCKER_DATABASE_URL := $(subst localhost,host.docker.internal,$(DATABASE_URL))
 
-.PHONY: run lint test tag image run-image sizes
+.PHONY: run lint fix test tag image run-image sizes
 
 run:
 	uv run python -m worker
 
 lint:
 	uv run ruff check .
+	uv run ruff format --check .
+
+fix:
+	uv run ruff check --fix .
+	uv run ruff format .
 
 test:
 	uv run pytest

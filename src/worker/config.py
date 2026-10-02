@@ -21,4 +21,3 @@ class Config:
             shutdown_wait=float(os.getenv("SHUTDOWN_WAIT", "15")),
             poll_interval=float(os.getenv("POLL_INTERVAL", "5")),
         )
-        

@@ -51,7 +51,7 @@ async def work_loop(cfg: Config, stop: asyncio.Event) -> None:
         # interval before noticing.
         try:
             await asyncio.wait_for(stop.wait(), timeout=cfg.poll_interval)
-        except asyncio.TimeoutError:
+        except TimeoutError:
             pass
 
     log.info("work loop finished")
@@ -85,7 +85,7 @@ async def main() -> int:
     try:
         await asyncio.wait_for(task, timeout=cfg.shutdown_wait)
         log.info("stopped cleanly")
-    except asyncio.TimeoutError:
+    except TimeoutError:
         log.warning("drain timed out, cancelling in-flight work")
         task.cancel()
         try:

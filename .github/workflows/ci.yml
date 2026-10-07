@@ -10,13 +10,13 @@ concurrency:
 
 jobs:
   ci:
-    uses: annakonn200059/job-tracker-ci/.github/workflows/python.yml@main
+    uses: annakonn200059/job-tracker-ci/.github/workflows/python.yml@v1.0.0
   image:
     needs: [ci]
     permissions:
       contents: read
       packages: write
       id-token: write
-    uses: annakonn200059/job-tracker-ci/.github/workflows/image.yml@main
+    uses: annakonn200059/job-tracker-ci/.github/workflows/image.yml@v1.0.0
     with:
       image-name: job-tracker-worker

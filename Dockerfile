@@ -12,7 +12,7 @@ RUN uv sync --frozen --no-install-project --no-dev
 # and uv_build refuses to build without it.
 COPY README.md ./
 COPY src/ ./src/
-RUN uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --no-editable
 
 FROM python:3.12-slim-bookworm
 RUN groupadd --system --gid 1001 app && \

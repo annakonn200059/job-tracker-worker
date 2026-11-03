@@ -13,4 +13,3 @@ def test_beat_creates_and_refreshes(tmp_path):
     os.utime(hb, (old, old))
     beat(hb)
     assert time.time() - hb.stat().st_mtime < 5
-    

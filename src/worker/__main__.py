@@ -6,6 +6,7 @@ import sys
 import structlog
 
 from worker.config import Config
+from worker.health import beat
 
 log = structlog.get_logger()
 
@@ -43,6 +44,7 @@ async def work_loop(cfg: Config, stop: asyncio.Event) -> None:
     """
     counter = 0
     while not stop.is_set():
+        beat()
         counter += 1
         await process_one(counter)
 
